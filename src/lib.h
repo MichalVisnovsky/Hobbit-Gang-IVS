@@ -25,7 +25,7 @@ namespace MathFuncs
         static double Exponent(double a, int ex);
 
         //Returns ex root of a
-        static double Root(int ex, double a);
+        static double Root(double a, int ex);
     };
 }
 double Add(double a, double b){
@@ -68,6 +68,33 @@ double Factorial(double a){
     return result;
 }
 
+double Exponent(double a, int ex){
+    if (ex < 0)
+    {
+        throw "Negative number condition!";
+    }
+    double result = 1;
+    for(double i = ex; i >= 1; i--)
+    {
+        result *= a;
+    }
+    return result;
+}
 
-
+double Root(double a, int ex){
+    if (a < 0 || ex < 0)
+    {
+        throw "Negative number condition!";
+    }
+    double result;
+    double dx;
+    double eps = 10e-6;
+    result = a * 0.5;
+    dx = (a/Exponent(result,ex-1)-result)/ex;
+    while(dx >= eps || dx <= -eps){
+        result = result + dx;
+        dx = (a/Exponent(result,ex-1)-result)/ex;
+    }
+return result;
+}
 #endif
