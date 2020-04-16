@@ -75,3 +75,38 @@ void Calculator::on_pointButton_released()
 {
     ui->Display->setText(ui->Display->text() + ".");
 }
+
+//clear button
+void Calculator::on_ClearButton_released()
+{
+    firstNumber = 0;
+
+    ui->Display->setText("0");
+
+    ui->AddButton->setChecked(false);
+    ui->SubButton->setChecked(false);
+    ui->DivButton->setChecked(false);
+    ui->MulButton->setChecked(false);
+    ui->ExpButton->setChecked(false);
+    ui->RootButton->setChecked(false);
+    ui->FactButton->setChecked(false);
+    firstDigitIns = false;
+
+}
+
+//change sign button
+void Calculator::on_ChangeSignButton_released()
+{
+    QPushButton *button = (QPushButton *) sender();
+
+    double displayNumber;
+    QString newDisplay;
+
+    if (button->text() == "+/-")
+    {
+        displayNumber = ui->Display->text().toDouble();
+        displayNumber = displayNumber * -1;
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+    }
+}
