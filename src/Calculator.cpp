@@ -110,3 +110,86 @@ void Calculator::on_ChangeSignButton_released()
         ui->Display->setText(newDisplay);
     }
 }
+//equals button
+void Calculator::on_EqualsButton_released()
+{
+    double displayNumber, secondNumber;
+    secondNumber = ui->Display->text().toDouble();
+    QString newDisplay;
+    firstDigitIns = false;
+
+    if(ui->AddButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Add(firstNumber, secondNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->AddButton->setChecked(false);
+
+    }
+    else if(ui->SubButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Subtract(firstNumber, secondNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->SubButton->setChecked(false);
+    }
+    else if(ui->DivButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Divide(firstNumber, secondNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->DivButton->setChecked(false);
+    }
+    else if(ui->MulButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Multiply(firstNumber, secondNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->MulButton->setChecked(false);
+    }
+    else if(ui->ExpButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Exponent(firstNumber, secondNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->SubButton->setChecked(false);
+    }
+    else if(ui->RootButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Root(firstNumber, secondNumber);
+        newDisplay = QString::number(displayNumber,'g',6);
+        ui->Display->setText(newDisplay);
+        ui->SubButton->setChecked(false);
+    }
+    else if(ui->FactButton->isChecked())
+    {
+        displayNumber = OurMathFuncs::Factorial(firstNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->MulButton->setChecked(false);
+    }
+}
+
+//Math buttons
+void Calculator::MathButtonPressed()
+{
+    ui->AddButton->setChecked(false);
+    ui->SubButton->setChecked(false);
+    ui->DivButton->setChecked(false);
+    ui->MulButton->setChecked(false);
+    ui->ExpButton->setChecked(false);
+    ui->RootButton->setChecked(false);
+    ui->FactButton->setChecked(false);
+
+    QPushButton * button = (QPushButton*) sender();
+
+    firstNumber = ui->Display->text().toDouble();
+    button->setChecked(true);
+
+    if (ui->FactButton->isChecked())
+    {
+         ui->Display->setText(ui->Display->text() + "!");
+    }
+
+    firstDigitIns = false;
+}
