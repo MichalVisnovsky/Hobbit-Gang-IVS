@@ -1,7 +1,7 @@
 /**
 *   @mainpage Hobbit Gang Calculator
-*   @author Hobbit Gang
-*   @date 04.22.2020
+*   @author BORIS BOBOCKÝ, MICHAL VIŠNOVSKÝ
+*   @date 04.16.2020
 *    
 *   @link
 *   lib.h
