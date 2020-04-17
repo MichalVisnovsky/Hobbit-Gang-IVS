@@ -13,7 +13,7 @@ Calculator::Calculator(QWidget *parent)
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Calculator 2020");
+    this->setWindowTitle("Hobbit Gang Calculator");
 
 
     ui->Display->setText(QString::number(firstNumber));
@@ -32,7 +32,7 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->ExpButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->RootButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->FactButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
-    
+
     ui->AddButton->setCheckable(true);
     ui->SubButton->setCheckable(true);
     ui->DivButton->setCheckable(true);
@@ -106,10 +106,11 @@ void Calculator::on_ChangeSignButton_released()
     {
         displayNumber = ui->Display->text().toDouble();
         displayNumber = displayNumber * -1;
-        newDisplay = QString::number(displayNumber,'g',16);
+        newDisplay = QString::number(displayNumber,'g',15);
         ui->Display->setText(newDisplay);
     }
 }
+
 //equals button
 void Calculator::on_EqualsButton_released()
 {
@@ -126,6 +127,7 @@ void Calculator::on_EqualsButton_released()
         ui->AddButton->setChecked(false);
 
     }
+
     else if(ui->SubButton->isChecked())
     {
         displayNumber = OurMathFuncs::Subtract(firstNumber, secondNumber);
@@ -133,13 +135,20 @@ void Calculator::on_EqualsButton_released()
         ui->Display->setText(newDisplay);
         ui->SubButton->setChecked(false);
     }
-    else if(ui->DivButton->isChecked())
-    {
+
+    else if(ui->DivButton->isChecked())   	
+    {	
+    	if(secondNumber == 0)
+	    {
+	        ui->Display->setText("Syntax error");
+	        return;
+	    }
         displayNumber = OurMathFuncs::Divide(firstNumber, secondNumber);
         newDisplay = QString::number(displayNumber,'g',16);
         ui->Display->setText(newDisplay);
         ui->DivButton->setChecked(false);
     }
+
     else if(ui->MulButton->isChecked())
     {
         displayNumber = OurMathFuncs::Multiply(firstNumber, secondNumber);
@@ -147,22 +156,56 @@ void Calculator::on_EqualsButton_released()
         ui->Display->setText(newDisplay);
         ui->MulButton->setChecked(false);
     }
+
     else if(ui->ExpButton->isChecked())
-    {
+    {	
+    	if(secondNumber!=(int)secondNumber)
+	    {
+	        ui->Display->setText("Syntax error");
+	        return;
+	    }
+	    if (secondNumber < 0)
+	    {
+	        ui->Display->setText("Syntax error");
+	        return;
+	    }
         displayNumber = OurMathFuncs::Exponent(firstNumber, secondNumber);
         newDisplay = QString::number(displayNumber,'g',16);
         ui->Display->setText(newDisplay);
         ui->SubButton->setChecked(false);
     }
+
     else if(ui->RootButton->isChecked())
-    {
-        displayNumber = OurMathFuncs::Root(firstNumber, secondNumber);
+    {	
+    	if(firstNumber!=(int)firstNumber)
+	    {
+	        ui->Display->setText("Syntax error");
+	        return;
+	    }
+	    if (secondNumber < 0 || firstNumber < 0)
+	    {
+	        ui->Display->setText("Syntax error");
+	        return;
+	    }
+        displayNumber = OurMathFuncs::Root(secondNumber, firstNumber);
         newDisplay = QString::number(displayNumber,'g',6);
         ui->Display->setText(newDisplay);
         ui->SubButton->setChecked(false);
     }
+
     else if(ui->FactButton->isChecked())
-    {
+    {	
+	    if(firstNumber!=(int)firstNumber)
+	    {
+	        ui->Display->setText("Syntax error");
+	        return;
+	    }
+	    if (firstNumber < 0)
+	    {
+	    	ui->Display->setText("Syntax error");
+	        return;
+	    }
+
         displayNumber = OurMathFuncs::Factorial(firstNumber);
         newDisplay = QString::number(displayNumber,'g',16);
         ui->Display->setText(newDisplay);
