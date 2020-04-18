@@ -3,6 +3,7 @@
 //
 
 #include "lib.h"
+#include <cmath>
 using namespace MathFuncs;
 
 double OurMathFuncs::Add(double a, double b){
@@ -42,6 +43,10 @@ double OurMathFuncs::Factorial(double a){
         throw "Number must be integer";
     }
 
+    if (a == 0)
+    {
+        return 1;
+    }
 
     for(int i=1;i<=a;i++)
     {
@@ -89,5 +94,15 @@ double OurMathFuncs::Root(double a, double ex){
         result = result + dx;
         dx = (a/Exponent(result,ex-1)-result)/ex;
     }
-return result;
+    return result;
+}
+
+double OurMathFuncs::Logarithm(double x){
+    if (x < 0)
+    {
+        throw "Negative number condition!";
+    }
+
+    double result = log10(x);
+    return result;
 }

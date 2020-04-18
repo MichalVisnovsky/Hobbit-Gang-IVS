@@ -20,6 +20,7 @@ private:
 
 private slots:
     void digitPressed();
+    void helpPressed();
     void MathButtonPressed();
     void on_pointButton_released();
     void on_ClearButton_released();

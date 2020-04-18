@@ -32,6 +32,7 @@ if(ANDROID)
     Calculator.cpp
     Calculator.h
     Calculator.ui
+    lib.h
   )
 else()
   add_executable(Calculator
@@ -39,6 +40,8 @@ else()
     Calculator.cpp
     Calculator.h
     Calculator.ui
+    lib.h
+    lib.cpp
   )
 endif()
 

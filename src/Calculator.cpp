@@ -1,9 +1,12 @@
 #include <Calculator.h>
 #include "./ui_Calculator.h"
 #include "lib.h"
+#include <QtCore>
 
 double firstNumber = 0;
+double keepnumber =0;
 bool firstDigitIns = false;
+bool checked = false;
 using namespace MathFuncs;
 
 
@@ -32,6 +35,7 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->ExpButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->RootButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->FactButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
+    connect(ui->LogButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
 
     ui->AddButton->setCheckable(true);
     ui->SubButton->setCheckable(true);
@@ -40,6 +44,7 @@ Calculator::Calculator(QWidget *parent)
     ui->ExpButton->setCheckable(true);
     ui->RootButton->setCheckable(true);
     ui->FactButton->setCheckable(true);
+    ui->LogButton->setCheckable(true);
 }
 
 Calculator::~Calculator()
@@ -90,6 +95,7 @@ void Calculator::on_ClearButton_released()
     ui->ExpButton->setChecked(false);
     ui->RootButton->setChecked(false);
     ui->FactButton->setChecked(false);
+    ui->LogButton->setChecked(false);
     firstDigitIns = false;
 
 }
@@ -136,13 +142,13 @@ void Calculator::on_EqualsButton_released()
         ui->SubButton->setChecked(false);
     }
 
-    else if(ui->DivButton->isChecked())   	
-    {	
-    	if(secondNumber == 0)
-	    {
-	        ui->Display->setText("Syntax error");
-	        return;
-	    }
+    else if(ui->DivButton->isChecked())
+    {
+        if(secondNumber == 0)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
         displayNumber = OurMathFuncs::Divide(firstNumber, secondNumber);
         newDisplay = QString::number(displayNumber,'g',16);
         ui->Display->setText(newDisplay);
@@ -158,58 +164,81 @@ void Calculator::on_EqualsButton_released()
     }
 
     else if(ui->ExpButton->isChecked())
-    {	
-    	if(secondNumber!=(int)secondNumber)
-	    {
-	        ui->Display->setText("Syntax error");
-	        return;
-	    }
-	    if (secondNumber < 0)
-	    {
-	        ui->Display->setText("Syntax error");
-	        return;
-	    }
+    {
+        if(secondNumber!=(int)secondNumber)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
+        if (secondNumber < 0)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
         displayNumber = OurMathFuncs::Exponent(firstNumber, secondNumber);
         newDisplay = QString::number(displayNumber,'g',16);
         ui->Display->setText(newDisplay);
-        ui->SubButton->setChecked(false);
+        ui->ExpButton->setChecked(false);
     }
 
     else if(ui->RootButton->isChecked())
-    {	
-    	if(firstNumber!=(int)firstNumber)
-	    {
-	        ui->Display->setText("Syntax error");
-	        return;
-	    }
-	    if (secondNumber < 0 || firstNumber < 0)
-	    {
-	        ui->Display->setText("Syntax error");
-	        return;
-	    }
+    {
+        if(firstNumber!=(int)firstNumber)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
+        if (secondNumber < 0 || firstNumber < 0)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
         displayNumber = OurMathFuncs::Root(secondNumber, firstNumber);
         newDisplay = QString::number(displayNumber,'g',6);
         ui->Display->setText(newDisplay);
-        ui->SubButton->setChecked(false);
+        ui->RootButton->setChecked(false);
     }
 
     else if(ui->FactButton->isChecked())
-    {	
-	    if(firstNumber!=(int)firstNumber)
-	    {
-	        ui->Display->setText("Syntax error");
-	        return;
-	    }
-	    if (firstNumber < 0)
-	    {
-	    	ui->Display->setText("Syntax error");
-	        return;
-	    }
-
+    {
+        if(keepnumber != 0)
+        {
+            firstNumber = keepnumber;
+        }
+        if(firstNumber!=(int)firstNumber)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
+        if (firstNumber < 0)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
         displayNumber = OurMathFuncs::Factorial(firstNumber);
         newDisplay = QString::number(displayNumber,'g',16);
         ui->Display->setText(newDisplay);
-        ui->MulButton->setChecked(false);
+        ui->FactButton->setChecked(false);
+        checked = false;
+        keepnumber = 0;
+    }
+    else if(ui->LogButton->isChecked())
+    {
+        if(keepnumber != 0)
+        {
+            firstNumber = keepnumber;
+        }
+        if (firstNumber <= 0)
+        {
+            ui->Display->setText("Syntax error");
+            return;
+        }
+        displayNumber = OurMathFuncs::Logarithm(firstNumber);
+        newDisplay = QString::number(displayNumber,'g',16);
+        ui->Display->setText(newDisplay);
+        ui->LogButton->setChecked(false);
+        checked = false;
+        keepnumber = 0;
     }
 }
 
@@ -223,16 +252,47 @@ void Calculator::MathButtonPressed()
     ui->ExpButton->setChecked(false);
     ui->RootButton->setChecked(false);
     ui->FactButton->setChecked(false);
+    ui->LogButton->setChecked(false);
 
     QPushButton * button = (QPushButton*) sender();
 
     firstNumber = ui->Display->text().toDouble();
     button->setChecked(true);
-
     if (ui->FactButton->isChecked())
     {
-         ui->Display->setText(ui->Display->text() + "!");
+        if(checked)
+        {
+            ui->Display->setText(ui->Display->text());
+        }
+        else
+        {
+            ui->Display->setText(ui->Display->text() + "!");
+            keepnumber = firstNumber;
+            checked = true;
+        }
+    }
+    if (ui->LogButton->isChecked())
+    {
+        if(checked)
+        {
+            ui->Display->setText(ui->Display->text());
+        }
+        else
+        {
+            ui->Display->setText( "log("+ ui->Display->text() + ")");
+            keepnumber = firstNumber;
+            checked = true;
+        }
     }
 
     firstDigitIns = false;
 }
+void Calculator::helpPressed()
+{
+    QString path = QCoreApplication::applicationDirPath();
+
+
+}
+
+
+
