@@ -98,7 +98,7 @@ double OurMathFuncs::Root(double a, double ex){
 }
 
 double OurMathFuncs::Logarithm(double x){
-    if (x < 0)
+    if (x <= 0)
     {
         throw "Negative number condition!";
     }
