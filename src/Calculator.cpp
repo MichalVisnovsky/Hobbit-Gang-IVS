@@ -2,6 +2,8 @@
 #include "./ui_Calculator.h"
 #include "lib.h"
 #include <QtCore>
+#include <QDesktopServices>
+#include <QApplication>
 
 double firstNumber = 0;
 double keepnumber =0;
@@ -36,6 +38,8 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->RootButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->FactButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->LogButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
+
+    connect(ui->HelpButton, SIGNAL(released()), this, SLOT(helpPressed()));
 
     ui->AddButton->setCheckable(true);
     ui->SubButton->setCheckable(true);
@@ -289,10 +293,7 @@ void Calculator::MathButtonPressed()
 }
 void Calculator::helpPressed()
 {
-    QString path = QCoreApplication::applicationDirPath();
 
+    QDesktopServices::openUrl(QUrl( "https://www.youtube.com/"));
 
 }
-
-
-
