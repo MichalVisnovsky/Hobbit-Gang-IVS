@@ -20,7 +20,7 @@ Calculator::Calculator(QWidget *parent)
 
     this->setWindowTitle("Hobbit Gang Calculator");
 
-
+    ui->Display->setReadOnly(true);
     ui->Display->setText(QString::number(firstNumber));
     QPushButton *numButtons[10];
     for(int i = 0 ;i < 10; i++)
