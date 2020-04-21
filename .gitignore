@@ -2,3 +2,4 @@
 *.iml
 .idea/
 src/build*
+src/CMake*
