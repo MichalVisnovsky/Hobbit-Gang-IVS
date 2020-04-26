@@ -6,7 +6,7 @@
 #include <QApplication>
 
 double firstNumber = 0;
-double keepnumber =0;
+double keepnumber = 0;
 bool firstDigitIns = false;
 bool checked = false;
 using namespace MathFuncs;
