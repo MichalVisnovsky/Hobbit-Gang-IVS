@@ -1,5 +1,5 @@
-#include <Calculator.h>
-#include "./ui_Calculator.h"
+#include <calculator.h>
+#include "./ui_calculator.h"
 #include "lib.h"
 #include <QtCore>
 #include <QDesktopServices>
@@ -297,3 +297,5 @@ void Calculator::helpPressed()
     QDesktopServices::openUrl(QUrl( "https://www.youtube.com/"));
 
 }
+
+
