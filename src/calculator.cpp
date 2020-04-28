@@ -1,12 +1,12 @@
-#include <calculator.h>
-#include "./ui_calculator.h"
+#include <Calculator.h>
+#include "./ui_Calculator.h"
 #include "lib.h"
 #include <QtCore>
 #include <QDesktopServices>
 #include <QApplication>
 
 double firstNumber = 0;
-double keepnumber = 0;
+double keepnumber =0;
 bool firstDigitIns = false;
 bool checked = false;
 using namespace MathFuncs;
@@ -20,7 +20,7 @@ Calculator::Calculator(QWidget *parent)
 
     this->setWindowTitle("Hobbit Gang Calculator");
 
-    ui->Display->setReadOnly(true);
+    //connect slots to number buttons
     ui->Display->setText(QString::number(firstNumber));
     QPushButton *numButtons[10];
     for(int i = 0 ;i < 10; i++)
@@ -64,6 +64,8 @@ void Calculator::digitPressed()
     double displayNumber;
     QString newDisplay;
 
+    //if first digit is not inserted clears 
+    //the display and set bool value to true
     if ( ! firstDigitIns )
     {
         displayNumber = button->text().toDouble();
@@ -85,7 +87,7 @@ void Calculator::on_pointButton_released()
     ui->Display->setText(ui->Display->text() + ".");
 }
 
-//clear button
+//clear button - set all buttons and variables to default values
 void Calculator::on_ClearButton_released()
 {
     firstNumber = 0;
@@ -121,7 +123,7 @@ void Calculator::on_ChangeSignButton_released()
     }
 }
 
-//equals button
+//equals button - call a funcs from lib.h  wich button was pressed 
 void Calculator::on_EqualsButton_released()
 {
     double displayNumber, secondNumber;
@@ -248,7 +250,8 @@ void Calculator::on_EqualsButton_released()
 
 //Math buttons
 void Calculator::MathButtonPressed()
-{
+{	
+	//all buttons checked set to false in case use pressed more in the row
     ui->AddButton->setChecked(false);
     ui->SubButton->setChecked(false);
     ui->DivButton->setChecked(false);
@@ -294,8 +297,6 @@ void Calculator::MathButtonPressed()
 void Calculator::helpPressed()
 {
 
-    QDesktopServices::openUrl(QUrl( "https://github.com/MichalVisnovsky/Hobbit-Gang-IVS/blob/master/HELP.txt"));
+    QDesktopServices::openUrl(QUrl( "https://www.youtube.com/"));
 
 }
-
-
