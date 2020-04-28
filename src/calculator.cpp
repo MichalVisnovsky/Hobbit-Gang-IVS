@@ -294,7 +294,7 @@ void Calculator::MathButtonPressed()
 void Calculator::helpPressed()
 {
 
-    QDesktopServices::openUrl(QUrl( "https://www.youtube.com/"));
+    QDesktopServices::openUrl(QUrl( "https://github.com/MichalVisnovsky/Hobbit-Gang-IVS/blob/master/HELP.txt"));
 
 }
 
