@@ -1,0 +1,28 @@
+Hobbit Gang Calculator 2020
+HELP
+
+How to use calculator:
+
+0-9: The number keys 0 to 9, after which the number is displayed in the ﬁrst part of the calculator display. 
+.: Symbolizes a decimal point. 
+AC: Clears the entire entered expression. 
+Help: Shows this manual. 
+=: Conﬁrm the entered expression so that it can be calculated by the calculator. 
++: Symbolize a sum (a + b = c) 
+	⇒ After entering 1.(a) and 2.(b) number from buttons of number, calculator prints theresult (c) of the addition operation. 
+− : Symbolize a subtraction (a−b = c) 
+	⇒ After entering 1.(a) and 2.(b) number from buttons of number, calculator prints theresult (c) of the subtraction operation.
+/ : Symbolize a division (a/b = c) 
+	⇒ After entering 1.(a) and 2.(b) number from buttons of number, calculator prints theresult (c) of the division operation.
+∗ : Symbolize a multiplication (a∗b = c) 
+	⇒ After entering 1.(a) and 2.(b) number from buttons of number, calculator prints theresult (c) of the multiplication operation. 
+x! : Symbolize a factorial of a number ’x’ (x! = b) 
+	⇒ After entering number(x) from buttons of number, calculator prints the result(b) of the factorial operation. 
+x∧z : Symbolize a raising a number ’x’ to power ’z’ (xz = c) 
+	⇒ After entering 1.number(x), which will be raising to power of 2. entered number(z) from buttons of number, calculator prints the result(c) of the multiplication operation. 
+√ : Symbolize a root extraction ( x √a = b) 
+	⇒ After entering number(x) from buttons of number, which symbolize the root, and then number(a) from buttons of number, calculator prints the result(b) of the root extraction operation. 
++/− : Symbolize an absolute value of a negative number or negative value of positive number (a = −a) or (−a = a) 
+	⇒ After entering a number(a), calculator prints the result(-a). OR ⇒ After entering a number(-a), calculator prints the result(a).
+log (x) : Symbolize a logarithm of given number (log(x) = y) 
+	⇒ After entering number(x) from buttons of number, calculator prints the result(y) of the root extraction operation.
