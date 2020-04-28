@@ -1,5 +1,5 @@
-#include <Calculator.h>
-#include "./ui_Calculator.h"
+#include <calculator.h>
+#include "./ui_calculator.h"
 #include "lib.h"
 #include <QtCore>
 #include <QDesktopServices>
@@ -17,7 +17,7 @@ Calculator::Calculator(QWidget *parent)
     , ui(new Ui::Calculator)
 {
     ui->setupUi(this);
-
+    ui->Display->setReadOnly(true);
     this->setWindowTitle("Hobbit Gang Calculator");
 
     //connect slots to number buttons
