@@ -10,7 +10,7 @@
 //============================================================================//
 
 #include "gtest/gtest.h"
-#include "../lib.h"
+#include "../Calculator/lib.h"
 #include <cmath>
 
 using namespace MathFuncs;
@@ -180,5 +180,5 @@ int main(int argc, char* argv[]) {
     return RUN_ALL_TESTS();
 }
 /**
-* @endif
-*/
+ * @endif
+ */

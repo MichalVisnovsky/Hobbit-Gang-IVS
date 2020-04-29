@@ -1,11 +1,5 @@
 /**
-*   @mainpage Hobbit Gang Calculator
-*   @author BORIS BOBOCKÝ, MICHAL VIŠNOVSKÝ
-*   @date 04.16.2020
 *
-*   @link
-*   lib.h
-*   @endlink
 *   @file lib.h
 *   @brief mathematical library for calculator
 */
