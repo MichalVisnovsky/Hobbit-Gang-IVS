@@ -30,6 +30,7 @@ Calculator::Calculator(QWidget *parent)
         connect(numButtons[i], SIGNAL(released()), this, SLOT(digitPressed()));
     }
 
+    //recieve signal from pressed buttons
     connect(ui->AddButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->SubButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->DivButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
@@ -40,7 +41,8 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->LogButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
 
     connect(ui->HelpButton, SIGNAL(released()), this, SLOT(helpPressed()));
-
+    
+    //set all buttons to checkable
     ui->AddButton->setCheckable(true);
     ui->SubButton->setCheckable(true);
     ui->DivButton->setCheckable(true);
@@ -51,12 +53,13 @@ Calculator::Calculator(QWidget *parent)
     ui->LogButton->setCheckable(true);
 }
 
+//destructor 
 Calculator::~Calculator()
 {
     delete ui;
 }
 
-
+//button of number is pressed
 void Calculator::digitPressed()
 {
     QPushButton *button = (QPushButton *) sender();
@@ -81,13 +84,13 @@ void Calculator::digitPressed()
     ui->Display->setText(newDisplay);
 }
 
-//point button
+//adding point to number
 void Calculator::on_pointButton_released()
 {
     ui->Display->setText(ui->Display->text() + ".");
 }
 
-//clear button - set all buttons and variables to default values
+//clear of calculator, buttons are set to 'false' by default
 void Calculator::on_ClearButton_released()
 {
     firstNumber = 0;
@@ -123,14 +126,15 @@ void Calculator::on_ChangeSignButton_released()
     }
 }
 
-//equals button - call a funcs from lib.h  wich button was pressed 
+//math functions resolved
 void Calculator::on_EqualsButton_released()
 {
     double displayNumber, secondNumber;
     secondNumber = ui->Display->text().toDouble();
     QString newDisplay;
     firstDigitIns = false;
-
+    
+    //button '+' is pressed
     if(ui->AddButton->isChecked())
     {
         displayNumber = OurMathFuncs::Add(firstNumber, secondNumber);
@@ -139,7 +143,8 @@ void Calculator::on_EqualsButton_released()
         ui->AddButton->setChecked(false);
 
     }
-
+    
+    //button '-' is pressed
     else if(ui->SubButton->isChecked())
     {
         displayNumber = OurMathFuncs::Subtract(firstNumber, secondNumber);
@@ -147,7 +152,8 @@ void Calculator::on_EqualsButton_released()
         ui->Display->setText(newDisplay);
         ui->SubButton->setChecked(false);
     }
-
+     
+    //button '/' is pressed
     else if(ui->DivButton->isChecked())
     {
         if(secondNumber == 0)
@@ -161,6 +167,7 @@ void Calculator::on_EqualsButton_released()
         ui->DivButton->setChecked(false);
     }
 
+    //button '*' is pressed
     else if(ui->MulButton->isChecked())
     {
         displayNumber = OurMathFuncs::Multiply(firstNumber, secondNumber);
@@ -169,6 +176,7 @@ void Calculator::on_EqualsButton_released()
         ui->MulButton->setChecked(false);
     }
 
+    //button 'x^z' is pressed
     else if(ui->ExpButton->isChecked())
     {
         if(secondNumber!=(int)secondNumber)
@@ -187,6 +195,7 @@ void Calculator::on_EqualsButton_released()
         ui->ExpButton->setChecked(false);
     }
 
+    //button 'sqrt' is pressed
     else if(ui->RootButton->isChecked())
     {
         if(firstNumber!=(int)firstNumber)
@@ -205,6 +214,7 @@ void Calculator::on_EqualsButton_released()
         ui->RootButton->setChecked(false);
     }
 
+    //button 'x!' is pressed
     else if(ui->FactButton->isChecked())
     {
         if(keepnumber != 0)
@@ -228,6 +238,8 @@ void Calculator::on_EqualsButton_released()
         checked = false;
         keepnumber = 0;
     }
+	
+     //button 'log(x)' is pressed
     else if(ui->LogButton->isChecked())
     {
         if(keepnumber != 0)
@@ -248,10 +260,10 @@ void Calculator::on_EqualsButton_released()
     }
 }
 
-//Math buttons
+//math button is pressed
 void Calculator::MathButtonPressed()
 {	
-	//all buttons checked set to false in case use pressed more in the row
+	//all buttons checked set to false by default in case use pressed more in the row
     ui->AddButton->setChecked(false);
     ui->SubButton->setChecked(false);
     ui->DivButton->setChecked(false);
@@ -294,6 +306,8 @@ void Calculator::MathButtonPressed()
 
     firstDigitIns = false;
 }
+
+//displays manual for user
 void Calculator::helpPressed()
 {
 
