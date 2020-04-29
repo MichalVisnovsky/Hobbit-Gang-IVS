@@ -1,1 +1,2 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+V poslednom mesiaci vyvoja sa nedodrziavali terminy, ktore sme si stanovili a predom urcene funkcie a priradene problematiky
+clenov tymu boli pozmenene. Do buducna by som zaviedol vacsiu dbanlivost na dodrzovanie terminov.

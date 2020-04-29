@@ -2,7 +2,7 @@
 /**
  * @file CalculatorTests.cpp
  * @author TEREZA BURIANOVA
- * @date 3/4/2020
+ * @date 03.04.2020
  * 
  * @brief Tests for the Hobbit Calculator math library.
  * @brief FIT VUT - IVS project 2
@@ -10,12 +10,17 @@
 //============================================================================//
 
 #include "gtest/gtest.h"
-#include "../lib.h"
+#include "../Calculator/lib.h"
+#include <cmath>
 
 using namespace MathFuncs;
 typedef OurMathFuncs math;
 
 //========== double Add(double a, double b); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Add function from the math library lib.h
+*/
 TEST(CalculatorTests, AddTest) {
     EXPECT_EQ(0, math::Add(-50, 50));
     EXPECT_EQ(-2000, math::Add(-500, -1500));
@@ -30,6 +35,10 @@ TEST(CalculatorTests, AddTest) {
 }
 
 //========== double Subtract(double a, double b); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Subtract function from the math library lib.h
+*/
 TEST(CalculatorTests, SubtractTest) {
     EXPECT_EQ(0, math::Subtract(50, 50));
     EXPECT_EQ(-2000, math::Subtract(-1000, 1000));
@@ -44,6 +53,10 @@ TEST(CalculatorTests, SubtractTest) {
 }
 
 //========== double Multiply(double a, double b); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Multiply function from the math library lib.h
+*/
 TEST(CalculatorTests, MultiplyTest) {
     EXPECT_EQ(0, math::Multiply(0, 0));
     EXPECT_EQ(2000, math::Multiply(2, 1000));
@@ -58,6 +71,10 @@ TEST(CalculatorTests, MultiplyTest) {
 }
 
 //========== double Divide(double a, double b); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Divide function from the math library lib.h
+*/
 TEST(CalculatorTests, DivideTest) {
     EXPECT_EQ(2, math::Divide(6, 3));
     EXPECT_EQ(2000, math::Divide(4000, 2));
@@ -77,6 +94,10 @@ TEST(CalculatorTests, DivideTest) {
 }
 
 //========== double Factorial(double a); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Factorial function from the math library lib.h
+*/
 TEST(CalculatorTests, FactorialTest) {
     EXPECT_EQ(2, math::Factorial(2));
     EXPECT_EQ(720, math::Factorial(6));
@@ -92,6 +113,10 @@ TEST(CalculatorTests, FactorialTest) {
 }
 
 //========== float exp(float tmp1, int ex); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Exponent function from the math library lib.h
+*/
 TEST(CalculatorTests, ExponentTest) {
     EXPECT_EQ(4, math::Exponent(2, 2));
     EXPECT_EQ(-8, math::Exponent(-2, 3));
@@ -111,6 +136,10 @@ TEST(CalculatorTests, ExponentTest) {
 }
 
 //========== float root(float tmp1, int ex); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Root function from the math library lib.h
+*/
 TEST(CalculatorTests, RootTest) {
     EXPECT_EQ(2, math::Root(4, 2));
     EXPECT_FLOAT_EQ(2, math::Root(16, 4));
@@ -127,8 +156,29 @@ TEST(CalculatorTests, RootTest) {
     EXPECT_ANY_THROW(math::Root(8, 2.1));
 }
 
+//========== float root(float tmp1, int ex); ==========//
+/**
+* @class CalculatorTests
+* @brief A class of tests designed to test the Logarithm function from the math library lib.h
+*/
+TEST(CalculatorTests, LogarithmTest) {
+    EXPECT_FLOAT_EQ(0.3010299, math::Logarithm(2));
+    EXPECT_FLOAT_EQ(1.2041199, math::Logarithm(16));
+    EXPECT_FLOAT_EQ(2, math::Logarithm(100));
+    EXPECT_EQ(1, math::Logarithm(10));
+
+    EXPECT_NE(2, math::Logarithm(2));
+    EXPECT_NE(1.551121, math::Logarithm(25));
+
+    EXPECT_ANY_THROW(math::Logarithm(0));
+    EXPECT_ANY_THROW(math::Logarithm(-6));
+}
+
 //========== RUN ALL TESTS ==========//
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+/**
+ * @endif
+ */

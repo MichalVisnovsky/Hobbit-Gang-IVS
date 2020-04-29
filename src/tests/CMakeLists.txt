@@ -28,9 +28,9 @@ endif()
 include_directories(cmake-build-debug/googletest-src/googlemock/include)
 include_directories(cmake-build-debug/googletest-src/googletest/include)
 
-set(SOURCE_FILES CalculatorTests.cpp ../lib.h)
+set(SOURCE_FILES CalculatorTests.cpp ../Calculator/lib.h ../Calculator/lib.cpp)
 add_executable(CalculatorTests ${SOURCE_FILES})
 
-add_library(math SHARED ../lib.cpp ../lib.h)
+add_library(math SHARED ../Calculator/lib.cpp ../Calculator/lib.h)
 
 target_link_libraries(CalculatorTests math gtest gtest_main)
