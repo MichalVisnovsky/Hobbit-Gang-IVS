@@ -2,7 +2,7 @@
 /**
  * @file CalculatorTests.cpp
  * @author TEREZA BURIANOVA
- * @date 3/4/2020
+ * @date 03.04.2020
  * 
  * @brief Tests for the Hobbit Calculator math library.
  * @brief FIT VUT - IVS project 2
@@ -179,3 +179,6 @@ int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+/**
+* @endif
+*/
