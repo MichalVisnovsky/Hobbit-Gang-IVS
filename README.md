@@ -15,4 +15,4 @@ Hobbit Gang
 Licencie
 -------
 
-Tento program je poskytovany...
+Tento program je poskytovany pod GNU GENERAL PUBLIC LICENSE Version 3.
